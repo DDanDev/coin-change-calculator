@@ -41,8 +41,8 @@ function displayResult(resultArray) {
             <th>Quarters (25)</th>
             <th>Dimes (10)</th>
             <th>Nickels (5)</th>
-            <th>Pennies (1)</th>
-        </tr>` + resultHTML;
+            <th>Pennies (1)</th>` + (debugMessages ? `<th>Sum</th>`: "") +
+        `</tr>` + resultHTML;
 	resultDisplay.innerHTML = resultHTML;
 }
 
