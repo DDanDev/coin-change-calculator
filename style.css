@@ -18,15 +18,32 @@ tr:nth-child(even) {
 }
 
 #tableContainer {
-	max-height: 80vh;
+	max-height: 60vh;
 	overflow-y: auto;
 }
 
 #stepsLog {
 	border: #777777 solid;
 	padding: 0.1rem 0.5rem;
-	max-height: 80vh;
+	max-height: 60vh;
 	overflow-y: auto;
 	background-color: #eee;
 	line-height: 1.6rem;
+}
+
+body > *::-webkit-scrollbar {
+	background-color: #555;
+	width: 7px;
+	border-radius: 5px;
+}
+
+body > *::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background-color: #ddd;
+    border: solid 1px transparent;
+    background-clip: content-box;
+}
+
+.hidden {
+    display: none;
 }

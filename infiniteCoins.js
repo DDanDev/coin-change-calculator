@@ -1,22 +1,18 @@
 //debugs (log step by step and sum on table) enable:
 //to remove this from code, delete this block (before next comment) and all lines starting with debugMessages ?
+const logBox = document.getElementById("stepsLog");
 let debugMessages = false;
 document.getElementById("enableLog").addEventListener("click", (e) => {
 	debugMessages ? (debugMessages = false) : (debugMessages = true);
+	debugMessages ? logBox.classList.remove("hidden") : logBox.classList.add("hidden");
 	displayResult(makeChange(changeInput.value));
 });
-const logBox = document.getElementById("stepsLog");
-let logContents;
+let logContents = "";
 
 //Calculate
-//Starts at quarters, then for each amount of quarters including zero that fits into total change, checks how many dimes fit in the remaining value.
-//Then for each dime amount possible, check how many nickels can fit in remaining.
-//Then for each nickel amount possible, complete the remaining with pennies.
-//When set is finished with the remaining pennies, it is added to the Nickels list. 
-//After checking pennies for each possible amount of nickels, the array of possible sets is returned to the dime instance where the items are spread and added to the list of possible sets in that instance.
-//Finished dimes are added to quarter arrays in the same way.
-//When this whole cycle finishes for all possible quarter amounts, the aggregated list of sets is returned by remainingCoin, spread and then returned by makeChange.
-//makeChange really only sets the starting point for the recursive remainingToCoin which does the whole thing.
+//For each type of coin, starting at the most valued, check how many can "fit" within the remaining change.
+//Then for each possible amount of that coin, do the same for the lesser ones. 
+//When it gets to pennies, add the remaining needed as pennies and "save" the finished set.
 
 function makeChange(totalChange) {
 	return [...remainingToCoin(25, totalChange, [0, 0, 0, 0])];
@@ -74,7 +70,7 @@ changeInput.addEventListener("change", () => {
 	resultDisplay.innerHTML = "Thinking";
 	debugMessages ? (logContents = ``) : null;
 	setTimeout(() => {
-		if (changeInput.value > 500) {
+		if (changeInput.value > 999) {
 			displayResult("Too much");
 			return;
 		}
