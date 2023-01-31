@@ -1,26 +1,32 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
 }
 
 tr:nth-child(odd) {
-    background-color: #fdfdfd;
+	background-color: #fdfdfd;
 }
 tr:nth-child(even) {
-    background-color: #dddddd;
+	background-color: #dddddd;
+}
+
+#tableContainer {
+	max-height: 80vh;
+	overflow-y: auto;
 }
 
 #stepsLog {
-    border: #777777 solid;
-    padding: 0.1rem 0.5rem;
-    max-height: 80vh;
-    background-color: #eee;
-    overflow-y: auto;
-    }
+	border: #777777 solid;
+	padding: 0.1rem 0.5rem;
+	max-height: 80vh;
+	overflow-y: auto;
+	background-color: #eee;
+	line-height: 1.6rem;
+}
