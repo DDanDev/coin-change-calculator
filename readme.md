@@ -5,5 +5,4 @@ https://ddandev.github.io/coin-change-calculator/
 Currently in browser's console only. Call function makeChange(total).
 
 Next tasks:
-1- add HTML input and results
-2- reduce javascript redundancy with only one function for all coin values instead of one for each type of coin.
+1- reduce javascript redundancy with only one function for all coin values instead of one for each type of coin.

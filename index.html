@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>	</title>
-</head>
-<body>
-    <script src="infiniteCoins.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Make Change</title>
+
+		<style>
+			body {
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			tr:nth-child(odd) {
+				background-color: #fdfdfd;
+			}
+			tr:nth-child(even) {
+				background-color: #dddddd;
+			}
+		</style>
+	</head>
+	<body>
+		<div><label for="makeChangeInput">Total change </label><input type="text" name="makeChangeInput" value="12" id="makeChangeInput" /></div>
+		<table id="makeChangeResults"></table>
+		<script src="infiniteCoins.js"></script>
+	</body>
 </html>

@@ -1,4 +1,50 @@
-console.log(makeChange(12));
+//Get input and display result
+const changeInput = document.getElementById("makeChangeInput");
+const resultDisplay = document.getElementById("makeChangeResults");
+changeInput.addEventListener("change", () => {
+    resultDisplay.innerHTML = "Thinking";
+    setTimeout(() => {
+	if (changeInput.value > 500) {
+		displayResult("Too much");
+		return;
+	}
+	displayResult(makeChange(changeInput.value));
+}, 1)
+});
+
+function displayResult(resultArray) {
+	let resultHTML = "";
+	console.log(typeof resultArray, resultArray);
+
+	if (typeof resultArray !== "object") {
+		resultDisplay.innerHTML = resultArray;
+		return;
+	}
+
+	for (result of resultArray) {
+		resultHTML = `</tr>` + resultHTML;
+		let newRow = "";
+		for (coin of result) {
+			newRow += `<td>` + coin + `</td>`;
+		}
+
+		resultHTML = `<tr>` + newRow + resultHTML;
+	}
+	resultHTML =
+		`<tr>
+            <th>Quarters (25)</th>
+            <th>Dimes (10)</th>
+            <th>Nickels (5)</th>
+            <th>Pennies (1)</th>
+        </tr>` + resultHTML;
+	resultDisplay.innerHTML = resultHTML;
+}
+
+displayResult(makeChange(changeInput.value));
+
+
+//Calculate
+
 function makeChange(totalChange) {
 	let possibleCombinations = [];
 
@@ -13,7 +59,7 @@ function makeChange(totalChange) {
 
 	possibleCombinations.push(...remainingToQuarters(totalChange, [0, 0, 0, 0]));
 	// possibleCombinations.push(...remainingToCoin(25, totalChange, [0, 0, 0, 0]));
-    
+
 	return possibleCombinations;
 }
 
