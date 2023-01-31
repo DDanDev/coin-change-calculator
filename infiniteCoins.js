@@ -1,3 +1,6 @@
+//debugs enable:
+let debugMessages = true;
+
 //Get input and display result
 const changeInput = document.getElementById("makeChangeInput");
 const resultDisplay = document.getElementById("makeChangeResults");
@@ -14,7 +17,6 @@ changeInput.addEventListener("change", () => {
 
 function displayResult(resultArray) {
 	let resultHTML = "";
-	console.log(typeof resultArray, resultArray);
 
 	if (typeof resultArray !== "object") {
 		resultDisplay.innerHTML = resultArray;
@@ -23,7 +25,8 @@ function displayResult(resultArray) {
 
 	for (result of resultArray) {
 		//test: display sum of each combination too
-		// result.push(result[0]*25+result[1]*10+result[2]*5+result[3]*1)
+		
+        debugMessages ? result.push(result[0]*25+result[1]*10+result[2]*5+result[3]*1) : null;
 
 		resultHTML = `</tr>` + resultHTML;
 		let newRow = "";
@@ -51,6 +54,11 @@ function makeChange(totalChange) {
 	let possibleCombinations = [];
 
 	possibleCombinations.push(...remainingToCoin(25, totalChange, [0, 0, 0, 0]));
+	debugMessages ? console.log(`--------------------
+    --------------
+    FINISHED ALL COMBINATIONS
+    --------------
+    --------------`) : null;
 
 	return possibleCombinations;
 }
@@ -83,16 +91,19 @@ function remainingToCoin(coinValue, remaining, currentSet) {
 	if (nextCoinValue === 0) {
 		let iterationSet = [...currentSet];
 		iterationSet[3] = remaining;
-		console.log("finished one ", iterationSet);
+		
+        debugMessages ? console.log("finished one (going back up from pennies)", iterationSet) : null;
 		return [iterationSet];
 	} else {
 		for (let currentCoins = 0; currentCoins <= maxCoins; currentCoins++) {
 			let remainingChange = remaining - coinValue * currentCoins;
 			let iterationSet = [...currentSet];
 			iterationSet[coinPositionInSet] = currentCoins;
-			console.log(coinValue, currentCoins, coinPositionInSet, iterationSet);
+
+			debugMessages ? console.log("checking for " + currentCoins + " coins of value " + coinValue + "(max fit: " + maxCoins + "). Current set: ", iterationSet) : null;
 			possibleCoinStarts.push(...remainingToCoin(nextCoinValue, remainingChange, iterationSet));
 		}
+		debugMessages ? console.log("going back up from " + coinValue) : null;
+		return possibleCoinStarts;
 	}
-	return possibleCoinStarts;
 }
