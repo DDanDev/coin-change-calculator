@@ -61,18 +61,7 @@ function makeChange(totalChange) {
 	let possibleCombinations = [];
 
 	possibleCombinations.push(...remainingToCoin(25, totalChange, [0, 0, 0, 0]));
-	debugMessages
-		? (logBox.innerText +=
-				`--------------------
-    --------------
-    FINISHED ALL COMBINATIONS
-    with ` +
-				possibleCombinations.length +
-				` possibilities!
-    --------------
-    --------------
-    `)
-		: null;
+	debugMessages ? (logBox.innerText += `--------------------\n--------------\nFINISHED ALL COMBINATIONS\nwith ` + possibleCombinations.length + ` possibilities!\n--------------\n--------------\n`) : null;
 
 	return possibleCombinations;
 }
