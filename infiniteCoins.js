@@ -1,5 +1,10 @@
 //debugs enable:
 let debugMessages = false;
+document.getElementById("enableLog").addEventListener("click", (e) => {
+	debugMessages ? (debugMessages = false) : (debugMessages = true);
+	displayResult(makeChange(changeInput.value));
+});
+const logBox = document.getElementById("stepsLog");
 
 //Get input and display result
 const changeInput = document.getElementById("makeChangeInput");
@@ -25,8 +30,8 @@ function displayResult(resultArray) {
 
 	for (result of resultArray) {
 		//test: display sum of each combination too
-		
-        debugMessages ? result.push(result[0]*25+result[1]*10+result[2]*5+result[3]*1) : null;
+
+		debugMessages ? result.push(result[0] * 25 + result[1] * 10 + result[2] * 5 + result[3] * 1) : null;
 
 		resultHTML = `</tr>` + resultHTML;
 		let newRow = "";
@@ -41,8 +46,10 @@ function displayResult(resultArray) {
             <th>Quarters (25)</th>
             <th>Dimes (10)</th>
             <th>Nickels (5)</th>
-            <th>Pennies (1)</th>` + (debugMessages ? `<th>Sum</th>`: "") +
-        `</tr>` + resultHTML;
+            <th>Pennies (1)</th>` +
+		(debugMessages ? `<th>Sum</th>` : "") +
+		`</tr>` +
+		resultHTML;
 	resultDisplay.innerHTML = resultHTML;
 }
 
@@ -54,12 +61,18 @@ function makeChange(totalChange) {
 	let possibleCombinations = [];
 
 	possibleCombinations.push(...remainingToCoin(25, totalChange, [0, 0, 0, 0]));
-	debugMessages ? console.log(`--------------------
+	debugMessages
+		? (logBox.innerText +=
+				`--------------------
     --------------
     FINISHED ALL COMBINATIONS
-    with ` + possibleCombinations.length + ` possibilities!
+    with ` +
+				possibleCombinations.length +
+				` possibilities!
     --------------
-    --------------`) : null;
+    --------------
+    `)
+		: null;
 
 	return possibleCombinations;
 }
@@ -92,8 +105,8 @@ function remainingToCoin(coinValue, remaining, currentSet) {
 	if (nextCoinValue === 0) {
 		let iterationSet = [...currentSet];
 		iterationSet[3] = remaining;
-		
-        debugMessages ? console.log("finished one (going back up from pennies)", iterationSet) : null;
+
+		debugMessages ? (logBox.innerText += "finished one (going back up from pennies) > " + iterationSet + "\n") : null;
 		return [iterationSet];
 	} else {
 		for (let currentCoins = 0; currentCoins <= maxCoins; currentCoins++) {
@@ -101,10 +114,10 @@ function remainingToCoin(coinValue, remaining, currentSet) {
 			let iterationSet = [...currentSet];
 			iterationSet[coinPositionInSet] = currentCoins;
 
-			debugMessages ? console.log("checking for " + currentCoins + " coins of value " + coinValue + "(max fit: " + maxCoins + "). Current set: ", iterationSet) : null;
+			debugMessages ? (logBox.innerText += "checking for " + currentCoins + " coins of value " + coinValue + "(max fit: " + maxCoins + "). Current set: " + iterationSet + "\n") : null;
 			possibleCoinStarts.push(...remainingToCoin(nextCoinValue, remainingChange, iterationSet));
 		}
-		debugMessages ? console.log("going back up from " + coinValue) : null;
+		debugMessages ? (logBox.innerText += "going back up from " + coinValue + "\n") : null;
 		return possibleCoinStarts;
 	}
 }

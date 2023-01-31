@@ -4,28 +4,16 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="style.css" />
+
 		<title>Make Change</title>
-
-		<style>
-			body {
-				text-align: center;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 1rem;
-			}
-
-			tr:nth-child(odd) {
-				background-color: #fdfdfd;
-			}
-			tr:nth-child(even) {
-				background-color: #dddddd;
-			}
-		</style>
 	</head>
 	<body>
 		<div><label for="makeChangeInput">Total change </label><input type="text" name="makeChangeInput" value="12" id="makeChangeInput" /></div>
 		<table id="makeChangeResults"></table>
+		<button id="enableLog">Enable step by step log and Sum column for each possible combination</button>
+        <div id="stepsLog"></div>
 		<script src="infiniteCoins.js"></script>
 	</body>
 </html>
