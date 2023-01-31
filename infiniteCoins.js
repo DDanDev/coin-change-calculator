@@ -1,5 +1,5 @@
 //debugs enable:
-let debugMessages = true;
+let debugMessages = false;
 
 //Get input and display result
 const changeInput = document.getElementById("makeChangeInput");
@@ -57,6 +57,7 @@ function makeChange(totalChange) {
 	debugMessages ? console.log(`--------------------
     --------------
     FINISHED ALL COMBINATIONS
+    with ` + possibleCombinations.length + ` possibilities!
     --------------
     --------------`) : null;
 

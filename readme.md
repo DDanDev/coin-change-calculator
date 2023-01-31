@@ -2,4 +2,5 @@ Calculate all possible combinations for a given change using quarters, dimes, ni
 
 https://ddandev.github.io/coin-change-calculator/
 
-See it step by step: enable console messages for each step and display sum for each result row by setting ```debugMessages = true``` in the browser console!
+Optional:
+See it step by step! Enable console messages for each step and display sum to check each result row by setting ```debugMessages = true``` in the browser console!
